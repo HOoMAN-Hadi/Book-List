@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book List</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap");
+
+      /* تعریف متغیرهای CSS */
+      :root {
+        --primary-color: #764ba2;
+        --secondary-color: #667eea;
+        --highlight-color: #ff758c;
+        --light-background: rgba(255, 255, 255, 0.9);
+        --text-color: #fff;
+        --box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      body {
+        font-family: "Cairo", sans-serif;
+        background: linear-gradient(
+          135deg,
+          var(--secondary-color),
+          var(--primary-color)
+        );
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+      }
+
+      .container {
+        background: var(--light-background);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: var(--box-shadow);
+        max-width: 500px;
+        width: 90%;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        overflow: hidden;
+      }
+
+      .container:hover {
+        transform: scale(1.03);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      }
+
+      h1 {
+        text-align: center;
+        color: var(--text-color);
+        background: linear-gradient(
+          90deg,
+          var(--highlight-color),
+          var(--primary-color)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 20px;
+        font-size: 2em;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      input {
+        padding: 10px;
+        border: 2px solid transparent;
+        border-radius: 6px;
+        font-size: 1em;
+        transition: border 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      input:focus {
+        outline: none;
+        border: 2px solid var(--primary-color);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      button {
+        padding: 10px;
+        background: linear-gradient(
+          90deg,
+          var(--secondary-color),
+          var(--primary-color)
+        );
+        color: #fff;
+        font-size: 1.1em;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.3s ease;
+      }
+
+      button:hover {
+        background: linear-gradient(
+          90deg,
+          var(--highlight-color),
+          var(--primary-color)
+        );
+        transform: translateY(-2px);
+      }
+
+      table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+        font-size: 0.95em;
+        max-height: 300px;
+        overflow-y: auto;
+        display: block;
+      }
+
+      table thead,
+      table tbody {
+        display: table;
+        width: 100%;
+      }
+
+      th,
+      td {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background: linear-gradient(
+          90deg,
+          var(--secondary-color),
+          var(--primary-color)
+        );
+        color: white;
+      }
+
+      tbody tr {
+        background: rgba(118, 75, 162, 0.05);
+      }
+
+      tbody tr:nth-child(even) {
+        background: rgba(102, 126, 234, 0.1);
+      }
+
+      tbody tr:hover {
+        background: rgba(118, 75, 162, 0.2);
+        transition: background 0.3s ease;
+      }
+
+      /* تنظیمات responsive */
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 1.5em;
+        }
+
+        button {
+          font-size: 1em;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>لیست کتاب‌ها</h1>
+      <form id="book-form">
+        <input type="text" id="book-name" placeholder="نام کتاب" required />
+        <input
+          type="text"
+          id="author-name"
+          placeholder="نام نویسنده"
+          required
+        />
+        <input type="number" id="publish-year" placeholder="سال چاپ" required />
+        <button type="submit" id="addBookBtn">اضافه کردن کتاب</button>
+      </form>
+
+      <table id="book-table">
+        <thead>
+          <tr>
+            <th>نام کتاب</th>
+            <th>نویسنده</th>
+            <th>سال چاپ</th>
+          </tr>
+        </thead>
+        <tbody id="book-table-body"></tbody>
+      </table>
+    </div>
+    <script src="script.js"></script>
+    <!-- 
+    <script>
+      const bookForm = document.getElementById("book-form");
+      const bookTable = document
+        .getElementById("book-table")
+        .getElementsByTagName("tbody")[0];
+
+      bookForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const bookName = document.getElementById("book-name").value;
+        const authorName = document.getElementById("author-name").value;
+        const publishYear = document.getElementById("publish-year").value;
+
+        const newRow = bookTable.insertRow();
+
+        const bookCell = newRow.insertCell(0);
+        const authorCell = newRow.insertCell(1);
+        const yearCell = newRow.insertCell(2);
+
+        bookCell.textContent = bookName;
+        authorCell.textContent = authorName;
+        yearCell.textContent = publishYear;
+
+        bookForm.reset();
+      });
+    </script> -->
+  </body>
+</html>
